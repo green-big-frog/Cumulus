@@ -67,9 +67,25 @@ module.exports = function(grunt) {
           dir             : '.',
           out             : 'dist',
           icon            : 'cumulus.icns',
-          version         : '0.34.0',
+          version         : '0.30.2',
           platform        : 'darwin',
           arch            : 'x64',
+          prune           : true,
+          // ignore          : 'node_modules/',
+          'app-version'   : packageJson.version,
+          'app-bundle-id' : 'com.gillesdemey.cumulus'
+        }
+      },
+      linux: {
+        options: {
+          name            : 'Cumulus',
+          dir             : '.',
+          out             : 'dist',
+          icon            : 'cumulus.icns',
+          version         : '0.30.2',
+          platform        : 'linux',
+          arch            : 'x64',
+          prune           : true,
           // ignore          : 'node_modules/',
           'app-version'   : packageJson.version,
           'app-bundle-id' : 'com.gillesdemey.cumulus'
@@ -80,6 +96,6 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['env:dev' ,'browserify:dev', 'sass:dev', 'watch']);
-  grunt.registerTask('build', ['build-osx']);
-  grunt.registerTask('build-osx', ['env:dist', 'clean:dist', 'browserify:dist', 'sass:dist', 'electron:osx']);
+  grunt.registerTask('build:osx', ['env:dist', 'clean:dist', 'browserify:dist', 'sass:dist', 'electron:osx']);
+  grunt.registerTask('build:linux', ['env:dist', 'clean:dist', 'browserify:dist', 'sass:dist', 'electron:linux']);
 };
